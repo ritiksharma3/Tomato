@@ -175,7 +175,7 @@ const Game = () => {
 
     const storedTimer = getTimerState();
     if (storedTimer !== null) {
-      setTimerState(storedTimer === 'true');
+      setTimerState(storedTimer);
     }
 
     if (storedChances) {
@@ -260,7 +260,7 @@ const Game = () => {
 
   function getTimerState() {
     const storedTimer = localStorage.getItem('timer');
-    return storedTimer;
+    return storedTimer === 'true';
   }
 
   const handleLoading = () => {
