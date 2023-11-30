@@ -19,7 +19,7 @@ import { useDispatch } from 'react-redux';
 
 // import state selectors
 import { setSetting } from './store/setting/actions'
-import { ContextProvider } from './views/ContextProvider';
+import { ContextProvider } from './context/ContextProvider';
 import { RouterProvider } from 'react-router-dom';
 import router from './router/router';
 

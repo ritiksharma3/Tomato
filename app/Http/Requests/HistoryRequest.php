@@ -21,33 +21,4 @@ class HistoryRequest extends BaseFormRequest
         ];
     }
 
-    /**
-     * Get the validation rules that apply to the put/patch request.
-     *
-     * @return array
-     */
-    // public function update()
-    // {
-    //     // return [
-    //     //     'id' => 'required|exists:outlets,id',
-    //     //     'outletName' => ['required', 'max:250', Rule::unique('outlets', 'outletName')->ignore($this->id)],
-    //     //     'address' => 'required|max:250',
-    //     //     'city' => 'required|max:120',
-    //     //     'country' => 'required',
-    //     //     'status' => 'in:Active,Inactive'
-    //     // ];
-    // }
-
-    /**
-     * Get the validation rules that apply to the delete request.
-     *
-     * @return array
-     */
-    // public function destroy()
-    // {
-    //     return [
-    //         'id' => [Rule::exists('outlets', 'id')]
-    //     ];
-    // }
-
 }

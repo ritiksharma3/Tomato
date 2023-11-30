@@ -5,9 +5,9 @@ import { Button, Card, Col, Form, Image, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
 import axiosClient from '../axios';
-import { useStateContext } from './ContextProvider';
+import { useStateContext } from '../context/ContextProvider';
 import axios from 'axios';
-import authServices from './auth.services';
+import authServices from '../service/auth.services';
 import tomato_logo from "../assets/images/tomato_logo.png"
 
 const signupSchema = Yup.object({

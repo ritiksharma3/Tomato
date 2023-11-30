@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axiosClient from '../axios'
 import { Container } from 'react-bootstrap';
-import { useStateContext } from './ContextProvider';
+import { useStateContext } from '../context/ContextProvider';
 
 const History = () => {
 

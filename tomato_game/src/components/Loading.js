@@ -1,6 +1,6 @@
 import React from 'react'
 import { Modal, Spinner } from 'react-bootstrap'
-import { useStateContext } from './ContextProvider'
+import { useStateContext } from '../context/ContextProvider'
 
 const Loading = () => {
     const { isLoading } = useStateContext();

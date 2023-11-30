@@ -4,11 +4,12 @@ import Header from './Header';
 import life from '../assets/images/life.png'
 import axios from 'axios';
 import axiosClient from '../axios';
-import { useStateContext } from './ContextProvider';
+import { useStateContext } from '../context/ContextProvider';
 import Swal from 'sweetalert2';
 import * as confetti from 'confettis';
 import { useTimer } from 'react-timer-hook';
 import { Switch } from '@headlessui/react';
+import cookie from 'js-cookie';
 // http://marcconrad.com/uob/tomato/api.php
 const Game = () => {
   const [urlData, setUrlData] = useState({
@@ -16,7 +17,7 @@ const Game = () => {
     solution: ''
   })
   const [score, setScore] = useState(getScoreFromLocalStorage() || 0);
-  const [timerstate, setTimerState] = useState(getTimerState() || 'false');
+  const [timerstate, setTimerState] = useState(getTimerState() || false);
   const [answer, setAnswer] = useState('');
   const [chances, setChances] = useState(3);
   const [highestScore, setHighestScore] = useState();
@@ -128,6 +129,10 @@ const Game = () => {
       }
 
     }
+    const time = new Date();
+    time.setSeconds(time.getSeconds() + 30);
+    restart(time)
+    setAnswer(null);
   }
 
   const getHighestScore = () => {
@@ -170,7 +175,7 @@ const Game = () => {
   };
 
   useEffect(() => {
-    const storedChances = localStorage.getItem('chances');
+    const storedChances = cookie.get('chances');
     getHighestScore();
 
     const storedTimer = getTimerState();
@@ -210,15 +215,15 @@ const Game = () => {
     if (chances > 0) {
       const newChances = chances - 1;
       setChances(newChances);
-      localStorage.setItem('chances', newChances.toString());
+      cookie.set('chances', newChances.toString());
     }
   }
 
   const resetChances = () => {
     setChances(3);
-    localStorage.setItem('chances', '3');
+    cookie.set('chances', '3');
     setScore(0);
-    localStorage.setItem('score', 0);
+    cookie.set('score', 0);
     getHighestScore();
   }
 
@@ -244,12 +249,12 @@ const Game = () => {
 
   const handleTimerState = () => {
     if (timerstate === true) {
-      localStorage.setItem('timer', 'false');
+      cookie.set('timer', 'false');
       pause();
       console.log("pause");
     }
     else {
-      localStorage.setItem('timer', 'true');
+      cookie.set('timer', 'true');
       const time = new Date();
       time.setSeconds(time.getSeconds() + 30);
       restart(time)
@@ -259,7 +264,7 @@ const Game = () => {
   }
 
   function getTimerState() {
-    const storedTimer = localStorage.getItem('timer');
+    const storedTimer = cookie.get('timer');
     return storedTimer === 'true';
   }
 
@@ -269,13 +274,13 @@ const Game = () => {
 
   // Function to retrieve score from localStorage
   function getScoreFromLocalStorage() {
-    const storedScore = localStorage.getItem('score');
+    const storedScore = cookie.get('score');
     return storedScore ? parseInt(storedScore, 10) : null;
   }
 
   // Function to save score to localStorage
   function saveScoreToLocalStorage(newScore) {
-    localStorage.setItem('score', newScore.toString());
+    cookie.set('score', newScore.toString());
   }
 
   const chancesArray = new Array(chances).fill(null);
@@ -337,6 +342,7 @@ const Game = () => {
             type='number'
             name='answer'
             placeholder='Enter the number'
+            value={answer}
             onChange={(e) => setAnswer(e.target.value)}
           />
         </Col>

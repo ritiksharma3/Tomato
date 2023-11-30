@@ -3,10 +3,11 @@ import { Navigate, Outlet } from 'react-router'
 import Header from './Header'
 import { Container, Dropdown, Image, Navbar } from 'react-bootstrap'
 import tomato_logo from "../assets/images/tomato_logo.png"
-import { useStateContext } from './ContextProvider'
+import { useStateContext } from '../context/ContextProvider'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import axiosClient from '../axios'
+import cookie from 'js-cookie';
 
 export default function DefaultLayout() {
     const { currentUser, userToken, setCurrentUser, setUserToken } = useStateContext();
@@ -20,6 +21,9 @@ export default function DefaultLayout() {
     const handleLogout = () => {
         setUserToken();
         localStorage.clear();
+        cookie.remove('timer');
+        cookie.remove('chances');
+        cookie.remove('score');        
         return navigate("/signin");
         // axiosClient.post("/logout")
         //     .then((response) => {

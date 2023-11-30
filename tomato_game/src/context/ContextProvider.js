@@ -2,8 +2,8 @@ import { useContext } from "react";
 import { useState } from "react";
 import { createContext } from "react";
 import { ToastContainer, toast } from "react-toastify";
-import { ToastOptions } from "./ToastOptions";
-import Loading from "./Loading.js";
+import { ToastOptions } from "../components/ToastOptions";
+import Loading from "../components/Loading.js";
 import 'react-toastify/dist/ReactToastify.css'
 
 const StateContext = createContext({

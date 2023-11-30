@@ -1,6 +1,6 @@
 import React from 'react'
 import { Navigate, Outlet } from 'react-router'
-import { useStateContext } from './ContextProvider'
+import { useStateContext } from '../context/ContextProvider'
 import { Col, Container, Row } from 'react-bootstrap';
 import background from '../assets/images/background.png'
 

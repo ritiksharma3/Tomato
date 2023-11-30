@@ -19,11 +19,4 @@ class History extends Model
         'userID'
     ];
 
-    public function scopeSearch($query, $s)
-    {
-        // return $query->where('outletName', 'like', '%' . $s . '%')
-        //     ->orwhere('address', 'like', '%' . $s . '%')
-        //     ->orwhere('country', 'like', '%' . $s . '%')
-        //     ->orwhere('city', 'like', '%' . $s . '%');
-    }
 }

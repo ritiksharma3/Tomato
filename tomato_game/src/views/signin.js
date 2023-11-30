@@ -6,8 +6,9 @@ import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useStateContext } from './ContextProvider';
+import { useStateContext } from '../context/ContextProvider';
 import axiosClient from '../axios';
+import cookie from 'js-cookie';
 
 const signinSchema = Yup.object({
   email: Yup.string().email("Email is invalid.").required("Email is required."),
@@ -38,7 +39,8 @@ const SignIn = () => {
       .then((response) => {
         setCurrentUser(response.data.user);
         setUserToken(response.data.token);
-        localStorage.setItem('timer', 'false');
+        cookie.set('timer', 'false');
+        // localStorage.setItem('timer', 'false');
         // localStorage.setItem(
         //   "user-info",
         //   JSON.stringify(response.data.user)
@@ -53,7 +55,7 @@ const SignIn = () => {
             []
           );
           const errorHtml = finalErrors.join("<br>");
-          showToast(errorHtml, "error");
+          showToast(err, "error");
         } else {
           console.error(err);
         }

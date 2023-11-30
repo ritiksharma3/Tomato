@@ -11,24 +11,14 @@ import { Provider } from 'react-redux';
 //reducer
 import { store } from './store'
 import router from './router/router';
-import { ContextProvider } from './views/ContextProvider';
+import { ContextProvider } from './context/ContextProvider';
 import Store from './store/index';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <StrictMode>
-    {/* <BrowserRouter basename={process.env.PUBLIC_URL}> */}
       <Provider store={Store}>
         <App />
       </Provider>
-    {/* </BrowserRouter> */}
-    {/* <BrowserRouter basename={process.env.PUBLIC_URL}>
-     <Provider store={store}>
-          <App />
-      </Provider>
-    </BrowserRouter> 
-    <ContextProvider>
-        <RouterProvider router={router} />
-      </ContextProvider>*/}
   </StrictMode>
 )
 
