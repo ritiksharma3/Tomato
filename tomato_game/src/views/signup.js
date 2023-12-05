@@ -2,7 +2,7 @@ import { useFormik } from 'formik';
 import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { Button, Card, Col, Form, Image, Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import axiosClient from '../axios';
 import { useStateContext } from '../context/ContextProvider';
@@ -26,6 +26,8 @@ const SignUp = () => {
         password_confirmation: ''
     });
 
+    const { showToast } = useStateContext();
+
     const { setCurrentUser, setUserToken } = useStateContext();
 
     const handleKeyPress = (e) => {
@@ -33,11 +35,17 @@ const SignUp = () => {
             submitForm();
         }
     }
+    const navigate = useNavigate();
 
     const submitForm = (values) => {
         axios.post("http://localhost:8000/api/users", values)
-            .then(response => console.log(response))
-            .catch(error => console.log(error));
+            .then((response) => {
+                showToast("User created.", "success");
+                navigate("/signin");
+            })
+            .catch((error) => {
+                showToast("Regiration failed.", "error");
+            });
     }
 
     useEffect(() => {

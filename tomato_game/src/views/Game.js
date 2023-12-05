@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Col, Container, FormControl, Form, FormLabel, Image, Navbar, Row } from 'react-bootstrap';
-import Header from './Header';
 import life from '../assets/images/life.png'
 import axios from 'axios';
 import axiosClient from '../axios';
@@ -52,6 +51,7 @@ const Game = () => {
   const starColors = ['#FFFC9A', '#FFD655', '#FFC155', '#FF9D55']
 
   const submitAnswer = () => {
+    setAnswer();
     console.log(answer);
     console.log(urlData.solution.toString());
 

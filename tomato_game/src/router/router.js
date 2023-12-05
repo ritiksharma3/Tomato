@@ -11,20 +11,6 @@ const { default: SignIn } = require("../views/signin");
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <DefaultLayout />,
-        children: [
-            {
-                path: '/game',
-                element: <Game />
-            },
-            {
-                path: '/history',
-                element: <History />
-            }
-        ]
-    },
-    {
-        path: "/",
         element: <GuestLayout />,
         children: [
             {
@@ -36,6 +22,20 @@ const router = createBrowserRouter([
                 element: <SignUp />
             },
 
+        ]
+    },
+    {
+        path: "/",
+        element: <DefaultLayout />,
+        children: [
+            {
+                path: '/game',
+                element: <Game />
+            },
+            {
+                path: '/history',
+                element: <History />
+            }
         ]
     },
 ]);

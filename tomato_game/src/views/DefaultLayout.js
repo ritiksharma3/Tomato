@@ -1,6 +1,5 @@
 import React from 'react'
 import { Navigate, Outlet } from 'react-router'
-import Header from './Header'
 import { Container, Dropdown, Image, Navbar } from 'react-bootstrap'
 import tomato_logo from "../assets/images/tomato_logo.png"
 import { useStateContext } from '../context/ContextProvider'

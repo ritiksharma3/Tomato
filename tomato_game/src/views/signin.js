@@ -39,7 +39,7 @@ const SignIn = () => {
       .then((response) => {
         setCurrentUser(response.data.user);
         setUserToken(response.data.token);
-        cookie.set('timer', 'false');
+        cookie.set('timer', false);
         // localStorage.setItem('timer', 'false');
         // localStorage.setItem(
         //   "user-info",
