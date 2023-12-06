@@ -40,12 +40,6 @@ const SignIn = () => {
         setCurrentUser(response.data.user);
         setUserToken(response.data.token);
         cookie.set('timer', false);
-        // localStorage.setItem('timer', 'false');
-        // localStorage.setItem(
-        //   "user-info",
-        //   JSON.stringify(response.data.user)
-        // );
-        // localStorage.setItem("token", response.data.token);
         navigate("/game");
       })
       .catch((err) => {

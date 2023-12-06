@@ -1,6 +1,4 @@
 import { useEffect } from 'react'
-//router
-import IndexRouters from "./router/index"
 
 //scss
 import "shepherd.js/dist/css/shepherd.css";
