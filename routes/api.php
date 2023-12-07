@@ -18,16 +18,14 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout']);
-Route::get('users/search', [UserController::class, 'search']);
-Route::post('users/restore', [UserController::class, 'restore']);
-Route::post('users/purge', [UserController::class, 'prune']);
-Route::resource('history', HistoryController::class);
-Route::get('history/score/{userID}', [HistoryController::class, 'get_highest']);
-Route::resource('users', UserController::class);
+
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::get('history/score/{userID}', [HistoryController::class, 'get_highest']);
+    Route::apiResource('history', HistoryController::class);
+    Route::apiResource('users', UserController::class);
+});
